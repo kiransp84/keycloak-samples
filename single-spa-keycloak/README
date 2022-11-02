@@ -1,0 +1,68 @@
+the objective of the POC ( 3 days )
+
+1. a microfront end application having 3 pages 
+--> a login page 
+--> a home page ( a protected page) 
+--> a my account page ( a protected page )
+--> a registration page ( a non protected page )
+--> an error page 
+
+2. a BFF layer using graphql and rest based APIs 
+
+--> a protected API 
+--> a non protected API 
+--> a shielded API 
+
+
+Step 1 
+we will be using keycloak for the login 
+
+Step 2 
+we will be using Microsoft AD as well 
+
+Step 3 
+we will try to validate the SSO in jboss 
+
+Landing page urls 
+
+--> /login 
+--> /home
+--> /my-account
+--> /register 
+
+login-app ( done )
+home-app ( done )
+myaccount-app ( done )
+registration-app ( done )
+
+
+ports
+
+root-config ( 9000 )
+login-app ( 8500 )
+home-app ( 8600 )
+myaccount-app ( 8700 )
+registration-app ( 8800 )
+
+Setup commands 
+
+npm install ( run separately )
+
+execute start-everyone.bar to run all mfes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

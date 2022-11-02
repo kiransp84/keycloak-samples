@@ -1,0 +1,14 @@
+first create root-config application by running "npx create-single-spa" and selected root-config when prompted 
+
+started the root-config to see the vanilla application 
+
+created a new single spa react application from scratch using create-single-spa and deployed the code in webpack 
+
+updated the systemjs-importmap registry with the new single spa react application in root config 
+
+updated the activation path in the layout file
+
+
+
+
+
