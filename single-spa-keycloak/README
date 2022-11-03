@@ -3,6 +3,7 @@ the objective of the POC ( 3 days )
 1. a microfront end application having 3 pages 
 --> a login page 
 --> a home page ( a protected page) 
+    --> log out from home page 
 --> a my account page ( a protected page )
 --> a registration page ( a non protected page )
 --> an error page 
@@ -26,8 +27,8 @@ we will try to validate the SSO in jboss
 Landing page urls 
 
 --> /login 
---> /home
---> /my-account
+--> /app/home
+--> /app/my-account
 --> /register 
 
 login-app ( done )
@@ -48,10 +49,12 @@ Setup commands
 
 npm install ( run separately )
 
-execute start-everyone.bar to run all mfes 
+execute start-everyone.bat to run all mfes 
 
 
-
+create realm 
+create client 
+add user 
 
 
 

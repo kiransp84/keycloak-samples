@@ -1,7 +1,7 @@
 {
-  "name": "@ibsplc/login-app",
+  "name": "@ibsplc/shared-keycloak",
   "scripts": {
-    "start": "webpack serve --port 8500",
+    "start": "webpack serve",
     "start:standalone": "webpack serve --env standalone",
     "build": "concurrently npm:build:*",
     "build:webpack": "webpack --mode=production",
@@ -11,7 +11,7 @@
     "check-format": "prettier --check .",
     "test": "cross-env BABEL_ENV=test jest",
     "watch-tests": "cross-env BABEL_ENV=test jest --watch",
-    "prepare": "cd ../.. && husky install login-app/.husky",
+    "prepare": "husky install",
     "coverage": "cross-env BABEL_ENV=test jest --coverage"
   },
   "devDependencies": {
@@ -43,8 +43,6 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@react-keycloak/web": "^3.4.0",
-    "keycloak-js": "^19.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "single-spa-react": "^4.3.1"

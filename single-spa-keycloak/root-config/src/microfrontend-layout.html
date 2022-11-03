@@ -21,21 +21,31 @@
     <route default>
       <application name="@single-spa/welcome"></application>
     </route>
+
+    <!-- root level routes -->
     <route path="login">
       <application name="@ibsplc/login-app"></application>
-    </route>   
-     
-    <route path="home">
-      <application name="@ibsplc/home-app"></application>
-    </route>  
-	
-    <route path="my-account">
-      <application name="@ibsplc/myaccount-app"></application>
-    </route>  	
-	
+    </route> 
+
     <route path="register">
       <application name="@ibsplc/registration-app"></application>
     </route>  
+    <!-- root level routes -->
+
+    <!-- secure child routes -->
+    <route path="app">
+      <route path="home">
+        <application name="@ibsplc/home-app"></application>
+      </route>  
+    
+      <!-- commented to check if we can perform authentication check before importing this mfe -->
+      <!-- <route path="my-account">
+        <application name="@ibsplc/myaccount-app"></application>
+      </route>  	-->
+
+    </route> 
+
+
 
   </main>
 </single-spa-router>

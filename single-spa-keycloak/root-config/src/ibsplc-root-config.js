@@ -16,5 +16,11 @@ const applications = constructApplications({
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
+
+// adding authentication check for my-account 
+window.addEventListener("single-spa:before-routing-event", async (evt) => {  
+  
+} );
+
 layoutEngine.activate();
 start();
