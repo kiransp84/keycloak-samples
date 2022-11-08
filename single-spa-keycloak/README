@@ -1,28 +1,39 @@
-the objective of the POC ( 3 days )
+Functional : objective of the POC ( 3 days )
 
 1. a microfront end application having 3 pages 
 --> a login page 
 --> a home page ( a protected page) 
-    --> log out from home page 
+    --> log out from home page ----------------------------------- TODO
 --> a my account page ( a protected page )
 --> a registration page ( a non protected page )
---> an error page 
+--> an error page ----------------------------------- TODO
 
 2. a BFF layer using graphql and rest based APIs 
 
 --> a protected API 
 --> a non protected API 
---> a shielded API 
+--> a shielded API ----------------------------------- TODO
 
 
 Step 1 
 we will be using keycloak for the login 
 
 Step 2 
-we will be using Microsoft AD as well 
+we will be using Microsoft AD as well  ----------------------------------- TODO 
 
 Step 3 
-we will try to validate the SSO in jboss 
+we will try to validate the SSO in jboss ----------------------------------- TODO
+
+Architecture : objective of the POCs 
+
+Use hashed urls ----------------------------------- TODO
+
+Use a shared micro front end ----------------------------------- TODO
+
+Check root config can access this shared microfront end ----------------------------------- TODO
+
+Do business login ----------------------------------- TODO
+Do token refresh ----------------------------------- TODO 
 
 Landing page urls 
 

@@ -14,10 +14,10 @@ module.exports = (webpackConfigEnv, argv) => {
 
   return merge(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
-    
-    //enable https if getting cors error 
+
+    //enable https if getting cors error
     //devServer:{
-      //https:true
+    //https:true
     //}
     //,
     plugins: [

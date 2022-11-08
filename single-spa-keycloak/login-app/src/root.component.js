@@ -10,6 +10,17 @@ const eventLogger = (event, error) => {
 
 const tokenLogger = (tokens) => {
   console.log("onKeycloakTokens", tokens);
+  if( tokens.token ) {
+    saveToken(tokens.token);
+  }
+};
+
+const TOKEN_ID = "access_token"
+
+const saveToken = (idtoken) => {
+  if (window.sessionStorage) {
+      window.sessionStorage.setItem(TOKEN_ID, idtoken);
+  }
 };
 
 export default function Root(props) {

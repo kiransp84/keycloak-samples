@@ -12,10 +12,21 @@ const eventLogger = (event, error) => {
 
 const tokenLogger = (tokens) => {
   console.log("onKeycloakTokens", tokens);
+  if( tokens.token ) {
+    saveToken(tokens.token);
+  }
+};
+
+const TOKEN_ID = "access_token"
+
+const saveToken = (idtoken) => {
+  if (window.sessionStorage) {
+      window.sessionStorage.setItem(TOKEN_ID, idtoken);
+  }
 };
 
 export default function Root(props) {
-  return (
+ return (
     <ReactKeycloakProvider
       authClient={keycloak}
       initOptions={{
@@ -28,14 +39,18 @@ export default function Root(props) {
       <Content />
     </ReactKeycloakProvider>
   );
+
+  return <Content />
 }
 
 function Content(props) {
-  const { initialized } = useKeycloak();
+  const { initialized , keycloak } = useKeycloak();
+
+  console.log(' authenticated ', keycloak );
 
   if (!initialized) {
     return <div>Loading...</div>;
   }
 
-  return <Link />;
+  return <div>{`Is Authenticated ${keycloak.authenticated}`} <Link /> </div>   ;
 }

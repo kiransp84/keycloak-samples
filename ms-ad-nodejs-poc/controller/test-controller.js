@@ -14,8 +14,12 @@ router.get('/admin', keycloak.protect('admin-role'), function(req, res){
     res.send("Hello Admin");
 });
 
-router.get('/all-user', keycloak.protect(['user-role','admin-role','manage-account']), function(req, res){
-    res.send("Hello All User");
+router.get('/all-user-new', keycloak.protect(['app-api-access']), function(req, res){
+    res.send("Hello All User New New New ");
+});
+
+router.get('/check-sso', keycloak.checkSso(), function(req, res){
+    res.send("Check-SSO-Success");
 });
 
 module.exports = router;
