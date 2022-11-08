@@ -1,7 +1,8 @@
 {
   "realm": "Microfrontend-poc-realm",
   "auth-server-url": "http://localhost:8080",
-  "ssl-required": "none",
+  "ssl-required-old-value": "none",
+  "ssl-required": "external",
   "resource": "microfrontend-poc-client",
   "public-client": true
 }

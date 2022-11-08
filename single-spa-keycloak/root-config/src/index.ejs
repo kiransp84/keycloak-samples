@@ -75,7 +75,9 @@
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
   <% } %>
 
-  <!--<script src="keycloak.js"></script>-->
+  <script src="keycloak.js"></script>
+  <script src="app.js"></script>
+
 </head>
 <body>
   <noscript>
@@ -85,5 +87,26 @@
     System.import('@ibsplc/root-config');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+
+  <!-- added from https://github.com/keycloak/keycloak-quickstarts/blob/latest/app-jee-html5/src/main/webapp/index.html -->
+  <div class="wrapper">
+    <div id="not-authenticated" style="display: none" class="menu">
+        <button name="loginBtn" onclick="keycloak.login()">Login</button>
+    </div>
+
+    <div id="authenticated" style="display: none" class="menu">
+        <button name="logoutBtn" onclick="keycloak.logout()">Logout</button>
+        <button name="accountBtn" onclick="keycloak.accountManagement()">Account</button>
+    </div>
+
+    <div class="content">
+        <button name="publicBtn" onclick="request('public')">Invoke Public</button>
+        <button name="securedBtn" onclick="request('secured')">Invoke Secured</button>
+        <button name="adminBtn" onclick="request('admin')">Invoke Admin</button>
+        <div class="message" id="message"></div>
+    </div>
+
+  </div>
+
 </body>
 </html>

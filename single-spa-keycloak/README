@@ -26,18 +26,18 @@ we will try to validate the SSO in jboss ----------------------------------- TOD
 
 Architecture : objective of the POCs 
 
-Use hashed urls ----------------------------------- TODO
-
-Use a shared micro front end ----------------------------------- TODO
-
-Check root config can access this shared microfront end ----------------------------------- TODO
+Use hashed urls in the application ---------------- Done 
+Use a shared micro front end ----------------------------------- Descoped 
+Check root config can access this shared microfront end ----------------------------------- Descoped 
 
 Do business login ----------------------------------- TODO
 Do token refresh ----------------------------------- TODO 
 
-Landing page urls 
+Landing page urls  ( modified )
 
---> /login 
+http://localhost:9000/#/login
+
+--> /#/login 
 --> /app/home
 --> /app/my-account
 --> /register 

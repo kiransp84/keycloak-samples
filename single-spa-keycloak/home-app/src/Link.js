@@ -11,7 +11,7 @@ export default function MyLink() {
             {" "}
             <li>
               {" "}
-              <Link to={`app/my-account`}>View Profile</Link>{" "}
+              <Link to={`#/app/my-account`}>View Profile</Link>{" "}
             </li>
           </ul>
         </nav>

@@ -1,4 +1,4 @@
-import { registerApplication, start } from "single-spa";
+import { registerApplication, start, navigateToUrl } from "single-spa";
 import {
   constructApplications,
   constructRoutes,
@@ -6,8 +6,7 @@ import {
 } from "single-spa-layout";
 import microfrontendLayout from "./microfrontend-layout.html";
 
-//import Keycloak from "keycloak-js";
-
+// authentication access token before loading any microfront end --NOT TESTED FULLY
 import { validateAccessToken } from "./utils";
 
 const routes = constructRoutes(microfrontendLayout);
@@ -17,11 +16,10 @@ const applications = constructApplications({
     return System.import(name);
   },
 });
+
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
-
-// adding authentication check for my-account
 
 const TOKEN_ID = "access_token";
 
@@ -32,7 +30,21 @@ const getToken = () => {
   return null;
 };
 
+window.addEventListener("ICO_EVT:HOME_SCREEN", (evt) => {
+  navigateToUrl("/#/app/home");
+});
+
 window.addEventListener("single-spa:before-routing-event", async (evt) => {
+  if (window.hasKeycloakInitialized) {
+    if (window.keycloak.authenticated) {
+      console.log("check says authenticated ");
+    } else {
+      console.log("check says NOT authenticated ");
+    }
+  } else {
+    console.log(" global keycloak hasnot been initialized ");
+  }
+
   const { newUrl } = evt.detail;
   const token = getToken();
   console.log(" single-spa:before-routing-event  token ", token);
@@ -54,20 +66,6 @@ window.addEventListener("single-spa:before-routing-event", async (evt) => {
     }
   }
 });
-
-/*var keycloak = new Keycloak( );
-
-window.onload = function () {
-  console.log(' on load function called ');
-  keycloak.init({ onLoad: 'check-sso', silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html' }).success(function () {
-      if (keycloak.authenticated) {
-        console.log('check says authenticated ');
-      } else {
-        console.log('check says NOT authenticated ');
-      }
-  });
-}
-*/
 
 layoutEngine.activate();
 start();
