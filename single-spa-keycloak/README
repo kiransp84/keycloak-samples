@@ -30,8 +30,7 @@ Use hashed urls in the application ---------------- Done
 Use a shared micro front end ----------------------------------- Descoped 
 Check root config can access this shared microfront end ----------------------------------- Descoped 
 
-Do business login ----------------------------------- TODO
-Do token refresh ----------------------------------- TODO 
+
 
 Landing page urls  ( modified )
 
@@ -70,7 +69,10 @@ add user
 
 
 
+Do business login ----------------------------------- TODO
+Do token refresh ----------------------------------- TODO 
 
+a hook which can be used in keycloak 
 
 
 

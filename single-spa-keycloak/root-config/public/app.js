@@ -1,3 +1,5 @@
+
+
 /*
  * JBoss, Home of Professional Open Source
  * Copyright 2016, Red Hat, Inc. and/or its affiliates, and individual
@@ -14,82 +16,97 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var keycloak = new Keycloak();
-var hasKeycloakInitialized = false;
-var serviceUrl = "http://127.0.0.1:8080/service";
 
-function notAuthenticated() {
-  document.getElementById("not-authenticated").style.display = "block";
-  document.getElementById("authenticated").style.display = "none";
-}
+import {doBusinessLogin} from "./logonutils.js";
 
-function authenticated() {
-  document.getElementById("not-authenticated").style.display = "none";
-  document.getElementById("authenticated").style.display = "block";
-  document.getElementById("message").innerHTML =
-    "User: " + keycloak.tokenParsed["preferred_username"];
-}
+(function() {
 
-function request(endpoint) {
-  var req = function () {
-    var req = new XMLHttpRequest();
-    var output = document.getElementById("message");
-    req.open("GET", serviceUrl + "/" + endpoint, true);
 
-    if (keycloak.authenticated) {
-      req.setRequestHeader("Authorization", "Bearer " + keycloak.token);
-    }
+  var keycloak = new Keycloak();
+  var hasKeycloakInitialized = false;
+  var serviceUrl = "http://127.0.0.1:8080/service";
+  
 
-    req.onreadystatechange = function () {
-      if (req.readyState == 4) {
-        if (req.status == 200) {
-          output.innerHTML = "Message: " + JSON.parse(req.responseText).message;
-        } else if (req.status == 0) {
-          output.innerHTML = '<span class="error">Request failed</span>';
-        } else {
-          output.innerHTML =
-            '<span class="error">' +
-            req.status +
-            " " +
-            req.statusText +
-            "</span>";
-        }
-      }
-    };
-
-    req.send();
-  };
-
-  if (keycloak.authenticated) {
-    keycloak.updateToken(30).success(req);
-  } else {
-    req();
+  
+  
+  function notAuthenticated() {
+    document.getElementById("not-authenticated").style.display = "block";
+    document.getElementById("authenticated").style.display = "none";
   }
-}
-
-window.onload = function () {
-
-  keycloak
-    .init({
-      onLoad: "login-required",
-      checkLoginIframeInterval: 1,
-    })
-    .success(function () {
-      hasKeycloakInitialized = true;
-      if (keycloak.authenticated) {
-        authenticated();
-
-        window.dispatchEvent(
-          new CustomEvent("ICO_EVT:HOME_SCREEN", {
-            detail: { keycloak: keycloak },
-          })
-        );
-      } else {
-        notAuthenticated();
-      }
-
-      document.body.style.display = "block";
+  
+  /*function authenticated() {
+    document.getElementById("not-authenticated").style.display = "none";
+    document.getElementById("authenticated").style.display = "block";
+    document.getElementById("message").innerHTML =
+      "User: " + keycloak.tokenParsed["preferred_username"];
+  }*/
+  
+  function authenticated() {
+    doBusinessLogin(keycloak.token).then( loginResponse => {
+      window.dispatchEvent(
+        new CustomEvent("ICO_EVT:HOME_SCREEN", {
+          detail: { keycloak: keycloak },
+        })
+      );
     });
-};
-
-keycloak.onAuthLogout = notAuthenticated;
+  }
+  
+  function request(endpoint) {
+    var req = function () {
+      var req = new XMLHttpRequest();
+      var output = document.getElementById("message");
+      req.open("GET", serviceUrl + "/" + endpoint, true);
+  
+      if (keycloak.authenticated) {
+        req.setRequestHeader("Authorization", "Bearer " + keycloak.token);
+      }
+  
+      req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+          if (req.status == 200) {
+            output.innerHTML = "Message: " + JSON.parse(req.responseText).message;
+          } else if (req.status == 0) {
+            output.innerHTML = '<span class="error">Request failed</span>';
+          } else {
+            output.innerHTML =
+              '<span class="error">' +
+              req.status +
+              " " +
+              req.statusText +
+              "</span>";
+          }
+        }
+      };
+  
+      req.send();
+    };
+  
+    if (keycloak.authenticated) {
+      keycloak.updateToken(30).success(req);
+    } else {
+      req();
+    }
+  }
+  
+  window.onload = function () {
+  
+    keycloak
+      .init({
+        onLoad: "login-required",
+        checkLoginIframeInterval: 1,
+      })
+      .success(function () {
+        hasKeycloakInitialized = true;
+        if (keycloak.authenticated) {
+          authenticated();         
+        } else {
+          notAuthenticated();
+        }
+  
+        document.body.style.display = "block";
+      });
+  };
+  
+  keycloak.onAuthLogout = notAuthenticated;
+  
+})();
