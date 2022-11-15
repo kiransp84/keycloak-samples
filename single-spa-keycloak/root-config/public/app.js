@@ -19,10 +19,19 @@
 
 import {doBusinessLogin} from "./logonutils.js";
 
+
+
+
+
 (function() {
+
+  window.security = { "keycloak" : null };
 
 
   var keycloak = new Keycloak();
+
+  window.security[ "keycloak" ] = keycloak ;
+  
   var hasKeycloakInitialized = false;
   var serviceUrl = "http://127.0.0.1:8080/service";
   

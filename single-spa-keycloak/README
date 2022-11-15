@@ -69,16 +69,26 @@ add user
 
 
 
-Do business login ----------------------------------- TODO
+Do business login ----------------------------------- done 
 Do token refresh ----------------------------------- TODO 
 
-a hook which can be used in keycloak 
+user accesses the root-config MFE 
+
+root-config authenticates the user with keycloak and redirect back to the root-config after authentication 
+
+access token and refresh token are kept in the global scope and will have a validity of 5 mins 
+
+root-config upon checking the authentication will do a business login 
+
+after the business login then navigate the user to home mfe 
+
+user takes some microfrontend 
+
+user makes an API call from the microfront end to back end and sends the access_token to it 
+
+bff will convert the access_token to the business_token to make api calls from there
 
 
+Handling the access_token expiry 
 
-
-
-
-
-
-
+    > before making any api calls we should check the access_token and should renew it

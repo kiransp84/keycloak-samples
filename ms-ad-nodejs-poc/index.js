@@ -16,6 +16,9 @@ app.use('/test', testController);
 const loginController = require('./controller/login-controller.js');
 app.use('/secure', loginController);
 
+const userController = require('./controller/user-controller.js');
+app.use('/user', userController);
+
 
 app.get('/', function(req, res){
    res.send("Server is up!");

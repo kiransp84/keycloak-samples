@@ -29,3 +29,9 @@ cd registration-app
 Start npm run start 
 
 cd ..
+
+cd shared-api-access 
+
+Start npm run start 
+
+cd ..
