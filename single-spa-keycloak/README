@@ -72,23 +72,22 @@ add user
 Do business login ----------------------------------- done 
 Do token refresh ----------------------------------- TODO 
 
-user accesses the root-config MFE 
+user accesses the root-config MFE -- done 
 
-root-config authenticates the user with keycloak and redirect back to the root-config after authentication 
+root-config authenticates the user with keycloak and redirect back to the root-config after authentication -- done 
 
-access token and refresh token are kept in the global scope and will have a validity of 5 mins 
+access token and refresh token are kept in the global scope and will have a validity of 5 mins -- done 
 
-root-config upon checking the authentication will do a business login 
+root-config upon checking the authentication will do a business login -- done 
 
-after the business login then navigate the user to home mfe 
+after the business login then navigate the user to home mfe -- done 
 
-user takes some microfrontend 
+user takes some microfrontend -- done 
 
-user makes an API call from the microfront end to back end and sends the access_token to it 
+user makes an API call from the microfront end to back end and sends the access_token to it -- done 
 
-bff will convert the access_token to the business_token to make api calls from there
-
-
-Handling the access_token expiry 
+Handling the access_token expiry -- Testing in progress  
 
     > before making any api calls we should check the access_token and should renew it
+
+    bff will convert the access_token to the business_token to make api calls from there -- In progress 
