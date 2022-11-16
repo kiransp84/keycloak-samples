@@ -13,16 +13,18 @@ export const NavbarContainer = () => {
     const [menu,setMenu] = useState([]);
 
     useEffect(async ()=> {
-        const menu = await loadData( CONSTANTS.URL , {} );
-        console.log(' response from loadData ',menu);
-        /*menu.success( (res)=> {
-            console.log(' response from axios ',res);
-            setMenu(res);
-        });*/
-        
-        
+        const menus = await loadData( CONSTANTS.URL , {} );
+        console.log(' response from loadData ',menus);
+        setMenu(menus)
     },[])
 
-    return <NavbarPanel data={menu} />
+    const reloadMenu = async () => {
+        const menus = await loadData( CONSTANTS.URL , {} );
+        console.log(' response from loadData ',menus);
+        setMenu(menus);
+        return null;
+    }
+
+    return <NavbarPanel data={menu} reloadMenu={reloadMenu} />
 }
 

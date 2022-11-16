@@ -9,7 +9,7 @@ router.post('/menu', keycloak.checkSso(), function(req, res){
     * */
     res.json(
         {
-            items : [ "about" , "events" , "annual" , "team" , "/sign-up" , "signin" ]
+            items : [ "about" , "events" , "annual" , "team" ,  "signin" ]
         }
     );
 });
